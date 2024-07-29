@@ -1,21 +1,26 @@
-import { useEffect, useState } from 'react'
-
-import './App.css'
+import React, {useEffect, useState} from 'react'
+import PlayerRow from './PlayerRow';
 
 function App() {
-  const [items, setItems] = useState([]);
+  const [data, setData] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch('https://localhost:3001');
-      const data = await res.json();
-      console.log(data);
-      setItems(data.items);
+      const res = await fetch("http://localhost:5001")
+      const dataJson = await res.json()
+      console.log(dataJson)
+      setData(dataJson.playersData)
     }
-    fetchData()
+    fetchData();
   }, [])
 
-  return (<>
-  </>
+  return (
+    <div>
+      {data.map(i => (
+        // <p>{i.First_Name}, {i.Last_Name}, {i.Rating}</p>
+        <PlayerRow player={i}/>
+      ))}
+    </div>
   )
 }
 
