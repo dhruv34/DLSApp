@@ -1,0 +1,15 @@
+.player-row {
+    display: flex;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+}
+
+.player-detail {
+    flex: 1;
+    margin: 8px;
+    padding: 8px;
+    text-align: center;
+    width: 30px
+}

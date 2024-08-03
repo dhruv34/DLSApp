@@ -14,14 +14,6 @@ app.get('/', async (req, res) => {
     return res.json({playersData: players})
 })
 
-// app.get("/api", (req, res) => {
-//     res.json({"players": [
-//         {"name": "Messi"}, 
-//         {"name": "Ronaldo"}, 
-//         {"name": "Neymar"}
-//     ]})
-// })
-
 app.listen(5001, () => {console.log("Server started on port 5001")}) 
 
 
