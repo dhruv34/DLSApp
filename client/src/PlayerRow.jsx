@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import './PlayerRow.css';
 
-export default function PlayerRow({player}) {
+export default function PlayerRow({player, boldCol}) {
 
   return (
     <div className="player-row">
@@ -24,7 +24,7 @@ export default function PlayerRow({player}) {
             <div className="player-detail">{player.Reactions}</div>
             <div className="player-detail">{player.Handling}</div>
             <div className="player-detail">{player.Rating_Change}</div>
-            <div className="player-detail" style={{marginLeft: '48px'}}>{player.Total_Stats}</div>
+            <div className="player-detail">{player.Total_Stats}</div>
             {/* <div className="player-detail">{player.ID}</div> */}
         </div>
   )

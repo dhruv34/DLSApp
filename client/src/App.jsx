@@ -6,6 +6,7 @@ function App() {
   const [data, setData] = useState([]);
   const [keys, setKeys] = useState([]);
   const [num, setNum] = useState(0);
+  const [colSelected, setCol] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,27 +21,29 @@ function App() {
   useEffect(() => {
     data.length > 0 && setKeys(Object.keys(data[0]));
     console.log(data)
-    setNum(num + 1)
   }, [data])
 
-  function sortBy(attribute) {
-    console.log("sort by ", attribute, "for example: ", data[0][attribute])
+  function sortBy(attribute, desc) {
+    console.log("sort by ", attribute, ", descending: ", desc)
     let sortedPlayers = data;
-    if (typeof data[0][attribute] == "number"){
-      sortedPlayers = data.sort((a, b) => b[attribute] - a[attribute]);
-    } else {
-      sortedPlayers = data.sort((a, b) => a[attribute].localeCompare(b[attribute]));
-    }
+    !desc && (sortedPlayers = data.sort(
+      (a, b) => (a[attribute] ? a[attribute].toString() : "").localeCompare(b[attribute] ? b[attribute].toString() : "")
+    ));
+    desc && (sortedPlayers = data.sort(
+      (a, b) => (b[attribute] ? b[attribute].toString() : "").localeCompare(a[attribute] ? a[attribute].toString() : "")
+    ));
     setData(sortedPlayers)
     console.log(data)
-    setNum(num + 1)
+
+    setNum(num + 1)   // For some reason, this is necessary for display to be updated???
+    setCol(attribute)
   }
 
   return (
-    <div key={num}>
+    <div>
       {data && data.length > 0 && <TableHeader attributes={keys} sortBy={sortBy}/>}
       {data.map(i => (
-        <PlayerRow player={i}/>
+        <PlayerRow player={i} boldCol={colSelected}/>
       ))}
     </div>
   )
