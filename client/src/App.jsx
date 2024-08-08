@@ -10,12 +10,13 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch("http://localhost:5001")
-      const dataJson = await res.json()
-      setData(dataJson.playersData)
-      console.log(dataJson.playersData)
+      const res = await fetch("http://localhost:5001");
+      const dataJson = await res.json();
+      setData(dataJson.playersData);
+      console.log(dataJson.playersData);
     }
     fetchData();
+    // console.log(process.env.REACT_APP_MONGO_CONN);
   }, [])
 
   useEffect(() => {
